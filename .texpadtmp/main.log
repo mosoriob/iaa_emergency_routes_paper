@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 SEP 2015 15:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  13 SEP 2015 20:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -404,8 +404,8 @@ LaTeX Warning: Unused global option(s):
     [letter].
 
 (/Users/mosorio/Documents/2015-1/iaa/proyecto/paper/.texpadtmp/main.aux
-LaTeX Info: Redefining \. on input line 6.
-LaTeX Info: Redefining \% on input line 6.
+LaTeX Info: Redefining \. on input line 7.
+LaTeX Info: Redefining \% on input line 7.
 )
 \openout1 = `main.aux'.
 
@@ -510,67 +510,71 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Try loading font information for U+msb on input line 19.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
+)
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
 
  []
 
-<images/routes.png, id=14, 543.02875pt x 327.2225pt>
+<images/routes.png, id=1, 543.02875pt x 327.2225pt>
 File: images/routes.png Graphic file (type png)
  <use images/routes.png>
-Package pdftex.def Info: images/routes.png used on input line 47.
+Package pdftex.def Info: images/routes.png used on input line 45.
 (pdftex.def)             Requested size: 271.5137pt x 163.61084pt.
 
-Overfull \hbox (9.37616pt too wide) in paragraph at lines 59--60
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[1
+
+{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (9.37616pt too wide) in paragraph at lines 57--58
 []\OT1/cmr/m/n/10 Sea $\OML/cmm/m/it/10 ET\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 P; v[]\OT1/cmr/m/n/10 )$ de-no-ta el tiem-po de via-je des-de el $\OML/cmm/m/it/10 v[]$ \OT1/cmr/m/n/10 has-ta $\OML/cmm/m/it/10 v[]$ \OT1/cmr/m/n/10 a lo lar-go de $(\OML/cmm/m/it/10 v[]; v[]; []  ; v[]\OT1/cmr/m/n/10 )$
  []
 
 [2 <./images/routes.png>] [3]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 175.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 172.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 175.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 172.
  [4] <images/areas.jpg, id=36, 298.0338pt x 181.63434pt>
 File: images/areas.jpg Graphic file (type jpg)
  <use images/areas.jpg>
-Package pdftex.def Info: images/areas.jpg used on input line 214.
+Package pdftex.def Info: images/areas.jpg used on input line 211.
 (pdftex.def)             Requested size: 298.03305pt x 181.63388pt.
- [5]
-Overfull \hbox (56.28392pt too wide) in paragraph at lines 225--235
+
+Overfull \hbox (56.28392pt too wide) in paragraph at lines 222--232
  [][] 
  []
 
-[6 <./images/areas.jpg>] [7] [8] [9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 475--476
+[5 <./images/areas.jpg>] [6] [7] [8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 472--473
 
  []
 
-[11] [12] [13]
-Overfull \hbox (8.76375pt too wide) in paragraph at lines 639--643
+[10] [11] [12]
+Overfull \hbox (13.76376pt too wide) in paragraph at lines 636--640
  [][] 
  []
 
-(/Users/mosorio/Documents/2015-1/iaa/proyecto/paper/.texpadtmp/main.bbl [14]) [15] (/Users/mosorio/Documents/2015-1/iaa/proyecto/paper/.texpadtmp/main.aux
-LaTeX Info: Redefining \. on input line 6.
-LaTeX Info: Redefining \% on input line 6.
+(/Users/mosorio/Documents/2015-1/iaa/proyecto/paper/.texpadtmp/main.bbl [13]) [14] (/Users/mosorio/Documents/2015-1/iaa/proyecto/paper/.texpadtmp/main.aux
+LaTeX Info: Redefining \. on input line 7.
+LaTeX Info: Redefining \% on input line 7.
 ) ) 
 Here is how much of TeX's memory you used:
  4401 strings out of 493117
  59517 string characters out of 6135433
- 165261 words of memory out of 5000000
+ 170260 words of memory out of 5000000
  7765 multiletter control sequences out of 15000+600000
  12852 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,11n,30p,2218b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,30p,2279b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-Output written on /Users/mosorio/Documents/2015-1/iaa/proyecto/paper/.texpadtmp/main.pdf (15 pages, 312241 bytes).
+Output written on /Users/mosorio/Documents/2015-1/iaa/proyecto/paper/.texpadtmp/main.pdf (14 pages, 311644 bytes).
 PDF statistics:
- 129 PDF objects out of 1000 (max. 8388607)
- 90 compressed objects within 1 object stream
+ 126 PDF objects out of 1000 (max. 8388607)
+ 88 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
