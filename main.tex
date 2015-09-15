@@ -20,15 +20,14 @@
 
 
 \begin{abstract}
-\textit{Path selection} es uno de los problemas fundamentales en logistica para el diseño de rutas en caso de emergencia. Dos modelos matemáticos son presentados para la selección de rutas. El primero, un modelo de un objetivo para la selección es presentado considerando el efecto del desastre en tiempo de viaje entre cada arco, el objetivo del modelo es minimizar el tiempo total de viaje a lo largo del camino. La velocidad de viaje es modelo como un función decreciente basada en el tiempo. Un  \textit{Ant } se 
-
-Path selection is one of the fundamental problems in emergency logistics management. Two mathematical models for path selection in emergency logistics management are presented considering more actual factors in time of disaster. First a single-objective path selection model is presented taking into account that the travel speed on each arc will be affected by disaster extension. The objective of the model is to minimize total travel time along a path. The travel speed on each arc is modeled as a continuous decrease function with respect to time. A modified Dijkstra algorithm is designed to solve the model. Based on the first model, we further consider the chaos, panic and congestions in time of disaster. A multi-objective path selection model is presented to minimize the total travel time along a path and to minimize the path complexity. The complexity of the path is modeled as the total number of arcs included in the path. An ant colony optimization algorithm is proposed to solve the model. Simulation results show the effectiveness and feasibility of the models and algorithms pre- sented in this paper.
+\textit{Route selection} es uno de los problemas fundamentales en la gestión de logística en caso de emergencia. En la literatura el problema ha sido tratado considerando la velocidad de viaje entre los nodos constante. Pero, la velocidad de viaje es variable con la extensión del desastre, especialmente en huracanes o inundaciones.
+En este documento dos modelos matemáticos son presentados para la selección de rutas para emergencia: el primero, un modelo de un objetivo que considera el efecto del desastre en tiempo de viaje entre cada arco, o sea, el objetivo del modelo es minimizar el tiempo total de viaje a lo largo del camino y  el segundo, un modelo de multi objetivo donde busca minimizar el tiempo y el número de los nodos en el camino. Ambos resueltos con el uso de \textit{Ant colony system - TSP}
 \end{abstract}
 
 \section{Introducci\'on}
 %Una explicaci\'on breve del contenido del informe. Es decir, detalla: Prop\'osito, Estructura del Documento, Descripci\'on (muy breve) del Problema y Motivaci\'on.
 
-En los recientes años, los frecuentes desastres naturales y no naturales ha producido una gran daño a la población, por ejemplo en Chile: Terremoto de 2010 en Concepción (27F), Gran Incendio de Valparaiso 2014 y Inundación del Norte de Chile en 2015, por lo cual es interesante observar los procedimientos asociados a este tipo de desastres. La logística es una de las mayores actividades durante y después de la emergencia, la entrega de alimentos, medicamentos, abrigo deben ser entregados desde la zona de almacenamiento al área afectada de la manera más rápida posible. Es por eso que el diseño de rutas en casos de emergencia es un tema interesante de desarrollar. \\
+En los recientes años, los frecuentes desastres naturales y no naturales han producido una gran daño a la población, por ejemplo en Chile: Terremoto de 2010 en Concepción (27F), Gran Incendio de Valparaiso 2014 y Inundación del Norte de Chile en 2015, por lo cual es interesante observar los procedimientos de logística asociados a este tipo de desastres. La logística es una de las mayores actividades durante y después de la emergencia, la entrega de alimentos, medicamentos, abrigo deben ser entregados desde la zona de almacenamiento al área afectada de la manera más rápida posible. Es por eso que el diseño de rutas en casos de emergencia es un tema interesante de desarrollar. \\
 En este documento se busca entender las variables que afectan al problema, su historia, consideraciones a tomar y los avances que se han realizado en la literatura. Para luego, en las próximas secciones describir de manera más amplia el problema, sus modelos y sus formas de resoluciones. Finalizando con las secciones relacionadas a la implementación donde se describirá la utilización de \textit{Ant Colony System} para el problema: representación utilizada, descripción del algoritmo diseñado, resultados y conclusiones. 
 
 \section{Definici\'on del Problema}
@@ -83,12 +82,12 @@ Por recursividad se puede obtener los valores de $t_{p_k}$ para los nodos $v_{p_
 %la fecha?, ?`qu\'e representaciones han tenido los mejores resultados?, ?`cu\'al es la tendencia actual?, tipos de movimientos,
 %heur\'isticas, m\'etodos completos, tendencias, etc... Puede incluir gr\'aficos comparativos, o explicativos.\\
 
-\textit{Path selection} es uno de los problemas fundamentales de logistica. En los recientes años, los frecuentes desastres naturales ha incentivado la investigación en el área, pese a eso, las investigaciones en rutas de emergencias son acotadas.  Ozdamar et al. (2004) \cite{ozdamar2004emergency} construyeron un modelo para el diseño de rutas para emergencias, el objetivo es minimizar la demanda insatisfecha en la ruta planeada. El plan logístico de emergencia incluye los puntos óptimos de recoger y entregar los materiales en las rutas. Estos planes son regenerados mientras nuevos materiales y modos de transportes se vuelven disponibles durante el tiempo planeado, pero no considera que el tiempo de viaje en los nodos puede variar según el efecto de la catástrofe. De hecho es importante considerar este aspecto, según Farahmand (1997) \cite{farahmand1997application} y Tufekci  (1995) \cite{tufekci1995integrated} las condiciones de viaje entre los nodos se ven fuertemente afectadas por la extensión del desastre especialmente en desastre como huracanes e inundaciones que se extienden en tiempo y espacio, otros trabajos como Yuan and Wang (2009) \cite{Yuan20091081} construyeron un modelo para expresar el efecto de la extensión de un desastre para la velocidad de viaje, para la resolución de este problema utilizan dos técnicas: la primera basada en el algoritmo de Dijkstra, la idea es encontrar el camino más corto paso a paso y otro algoritmo que está basado en Ant colony optimization (ACO) \cite{Yuan20091081}. Xiaoge et al. (2013) \cite{zhang2013route} proponen un algoritmo inspirado en biología utilizando el comportamiento de las ameboides para calcular las rutas donde la velocidad los arcos en los nodos son variables. Investigaciones relacionadas han mostrado que las mayores congestiones cuando existe un desastre son producidas en las intersecciones de dos arcos en una ruta de emergencia Southworth (1991) \cite{southworth1991regional} y COVA (2003) \cite{cova2003network}, de hecho de ahí nace un nuevo problema \textit{Lane-based routing} donde la estrategia busca eliminar los cruces en las intersecciones. \cite{cova2003network}
+\textit{Path selection} es uno de los problemas fundamentales de logística. En los recientes años, los frecuentes desastres naturales ha incentivado la investigación en el área, pese a eso, las investigaciones en diseño de rutas para emergencias son acotadas.  Ozdamar et al. (2004) \cite{ozdamar2004emergency} construyeron un modelo para el diseño de rutas para emergencias, el objetivo es minimizar la demanda insatisfecha en la ruta planeada. El plan logístico de emergencia incluye los puntos óptimos de recoger y entregar los materiales en las rutas. Estas rutas son regeneradas mientras nuevos materiales y modos de transportes se vuelven disponibles durante el tiempo planeado, pero no considera que el tiempo de viaje en los nodos puede variar según el efecto de la catástrofe. Es  importante considerar este aspecto, según Farahmand (1997) \cite{farahmand1997application} y Tufekci  (1995) \cite{tufekci1995integrated} las condiciones de viaje entre los nodos se ven fuertemente afectadas por la extensión del desastre especialmente en desastre como huracanes e inundaciones que se extienden en tiempo y espacio, otros trabajos como Yuan and Wang (2009) \cite{Yuan20091081} construyeron un modelo para expresar el efecto de la extensión de un desastre para la velocidad de viaje, para la resolución de este problema utilizan dos técnicas: la primera basada en el algoritmo de Dijkstra, la idea es encontrar el camino más corto paso a paso y otro algoritmo que está basado en Ant colony optimization (ACO) \cite{Yuan20091081}. Xiaoge et al. (2013) \cite{zhang2013route} proponen un algoritmo inspirado en biología utilizando el comportamiento de las ameboides para calcular las rutas donde la velocidad los arcos en los nodos son variables. Investigaciones relacionadas han mostrado que las mayores congestiones cuando existe un desastre son producidas en las intersecciones de dos arcos en una ruta de emergencia Southworth (1991) \cite{southworth1991regional} y Cova (2003) \cite{cova2003network}, de hecho de ahí nace un nuevo problema \textit{Lane-based routing} donde la estrategia busca eliminar los cruces en las intersecciones con el fin de disminuir el tiempo en las intersecciones. \cite{cova2003network}
 
 
 \section{Modelo Matem\'atico}
 %Uno o m\'as modelos matem\'aticos para el problema, idealmente indicando elp espacio de b\'usqueda para cada uno.
-Considerado lo descrito por Southworth (1991) \cite{southworth1991regional} y COVA (2003) \cite{cova2003network}: se diseñan dos modelos con distintos objetivos: el primero busca la minimización del tiempo y el segundo busca multiples objetivos: la minimización del tiempo y de la cantidad de nodos.
+Considerando lo descrito por Southworth (1991) \cite{southworth1991regional} y Cova (2003) \cite{cova2003network}: se diseñan dos modelos con distintos objetivos: el primero busca la minimización del tiempo y el segundo busca multiples objetivos: la minimización del tiempo y de la cantidad de nodos en la ruta.
 
 
 \subsection{Minimización del tiempo} 
@@ -126,7 +125,6 @@ t_1 =0
 
 
 
-
 \begin{equation}\label{circles}
 	\sum_{\substack{j=1\\
                   j \neq i}}^n x_{ij} = \begin{cases}
@@ -141,7 +139,7 @@ t_1 =0
 
 \subsection{Multi-objetivo \textit{path selection}}
 
-Investigadores han mostrado que la mayor congestion el pánico sucede en las intersecciones de dos arcos en una red de emergencia. \cite{southworth1991regional} \cite{cova2003network}. Cuando se viaja en un camino con menor número de arcos es más fácil y rápido seguir el camino. La complejidad del camino puede obtenida por el número de arcos incluidos en un camino. 
+Southworth (1991) \cite{southworth1991regional} y Cova (2003) han mostrado que la mayor congestion sucede en las intersecciones de dos arcos en una red de emergencia, cuando se viaja en un camino con menor número de arcos es más fácil y rápido seguir el camino. La complejidad del camino puede obtenida por el número de arcos incluidos en un camino. 
 
 
 \begin{equation}\label{f_1}
@@ -157,13 +155,13 @@ La restricciones con la misma del modelo anterior.
 
 \section{Descripción del algoritmo}
 
-El algoritmo utilizado fue una implementación de Ant Colony System con TSP (ACS-TSP). Para la heuristica se propuso en general:
+El algoritmo utilizado fue una implementación de Ant Colony System con TSP (ACS-TSP). Para la heurística se propuso en general:
 
 \begin{equation}
 	\eta_{ij} = r_1*\frac{f_1 - f_1^*}{f_1} + r_2*\frac{f_2 - f_2^*}{f_2}
 \end{equation}
 
-Donde $r_1$ y $r_2$ son los pesos asociados al tiempo y a la cantidad de nodos respectivamente, esto permite poder pasar del modelo multi-objetivo al modelo de minimización de tiempo facilmente.  $f_1^m$ y $f_2^n$ son los valores de la función objetivo \eqref{f_1} y \eqref{f_2} que corresponde al camino encontrado por la hormiga $m$, $f_1^*$ y $f_2^*$ el mejor valor obtenido. Además $r_1$ y $r_2$ debe cumplir que $r_1 + r_2 = 1$
+Donde $r_1$ y $r_2$ son los pesos asociados al tiempo y a la cantidad de nodos respectivamente, esto permite poder pasar del modelo multi-objetivo al modelo de minimización de tiempo fácilmente.  $f_1^m$ y $f_2^n$ son los valores de la función objetivo \eqref{f_1} y \eqref{f_2} que corresponde al camino encontrado por la hormiga $m$, $f_1^*$ y $f_2^*$ el mejor valor obtenido. Además $r_1$ y $r_2$ debe cumplir que $r_1 + r_2 = 1$
 
 El algoritmo ACS-TSP modificado para el problema se describe:
 \begin{itemize}
@@ -201,9 +199,9 @@ Y donde $i$ es la ciudad actual.
 donde $\Delta \tau_{ij}(t) = \frac{1}{L^+}$
 \end{itemize} 
 Los valores utilizados por $\alpha=1$,$\beta=2$,$q_0=0.9$,$m=10$,$Q=100$,$\tau_0=(nL_{nn})^{-1}$,$cl=15$
-\section{Experimientos}
+\section{Experimentos}
 
-Basado en el trabajo de \cite{Yuan20091081} se busca estudiar el efecto de un mayor número de desastres y nivel de estos. A partir de \eqref{speed}, se desprende que al disminuir $a_{ij}$ se refleja en la influencia instantánea de los desastres, un  $a_{ij}$ representa una gran influencia, $b_{ij}$ puede reflejarse en la influencia de los desastre en un periodo de tiempo donde el desastre sucede y un mayor $b_{ij}$ significa cuan rápido decrece la velocidad del viaje.
+Basado en el trabajo de \cite{Yuan20091081} se busca estudiar el efecto de un mayor número de desastres y nivel de estos. A partir de la ecuación \eqref{speed}, se desprende que al disminuir $a_{ij}$ se refleja en la influencia instantánea de los desastres, un  $a_{ij}$ representa una gran influencia, $b_{ij}$ puede reflejarse en la influencia de los desastre en un periodo de tiempo donde el desastre sucede y un mayor $b_{ij}$ significa cuan rápido decrece la velocidad del viaje.
 
 
 En el trabajo \cite{Yuan20091081} se observa, se dividió los 20 nodos en 3 áreas, que se muestra en la figura \ref{area3}. En cada área los parámetros decrecientes son generados en diferentes intervalos como se muestra en la figura. En cada área los parámetros son generados de forma aleatoria en los diferentes intervalos, los cuales se observan en el cuadro \ref{table:intervalo}. En el caso del desastre 0 es cuando nos encontramos en una situación sin ningún desastre y el desastre 5 es cuando nos encontramos en una situación más compleja.
@@ -546,7 +544,7 @@ Al estudiar la sensibilidad de los resultados cambiando el valor de $r_1$ tal qu
 \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
-r1 & min & tiempo {[}min{]} & largo \\ \hline
+$r_1$ & min & tiempo {[}min{]} & largo \\ \hline
 0.05 & 0.238405  & 3.19333 & 5 \\ \hline
 0.1  & 0.22681   & 3.19333 & 5 \\ \hline
 0.15 & 0.215216  & 3.19333 & 5 \\ \hline
@@ -577,7 +575,7 @@ r1 & min & tiempo {[}min{]} & largo \\ \hline
 \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
-r1 & min & tiempo {[}min{]} & largo \\ \hline
+$r_1$ & min & tiempo {[}min{]} & largo \\ \hline
 0.05 & 0.246164 & 7.46814 & 5 \\ \hline
 0.1 & 0.242329 & 7.46814 & 5 \\ \hline
 0.15 & 0.238493 & 7.46814 & 5 \\ \hline
@@ -606,7 +604,7 @@ r1 & min & tiempo {[}min{]} & largo \\ \hline
 \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
-r1 & min & tiempo {[}min{]} & largo \\ \hline
+$r_1$ & min & tiempo {[}min{]} & largo \\ \hline
 0.05 & 0.265712  & 19.2772 & 5 \\ \hline
 0.1  & 0.281425  & 19.2772 & 5 \\ \hline
 0.15 & 0.297137  & 19.2772 & 5 \\ \hline
@@ -631,14 +629,14 @@ r1 & min & tiempo {[}min{]} & largo \\ \hline
 \label{ses-5}
 \end{table}
 
-Respecto a los tiempos de uso de computacional del algoritmo, en el cuadro \ref{time} se muestra los tiempos asociados a cada grado de desastre en segundos, se puede afirmar que los tiempos que se encuentran entre $[39, 44]$ ms.
+Respecto a los tiempos de uso de computacional del algoritmo, en el cuadro \ref{time} se muestra los tiempos asociados a cada grado de desastre en segundos, se puede afirmar que los tiempos que se encuentran entre $[8, 44]$ ms.
 
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|l|l|}
 \hline
 Grado 1 [s] & Grado 2 [s] & Grado 3  [s] & Grado 4 [s]& Grado 5 [s]\\ \hline
-$0.03932\pm0.0049$ & $0.04255\pm0.0069$ & $0.04206\pm0.0048$ & $0.04131\pm0.0046$ & $0.04304\pm0.0462$ \\ \hline\end{tabular}
+$0.00784\pm0.0049$ & $0.01702\pm0.0069$ & $0.025236\pm0.0048$ & $0.03304\pm0.0046$ & $0.04304\pm0.0462$ \\ \hline\end{tabular}
 \caption{Tiempos del peor caso}
 \label{time}
 \end{table}
