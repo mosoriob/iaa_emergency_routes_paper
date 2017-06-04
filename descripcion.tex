@@ -1,0 +1,145 @@
+\section{Descripción propuesta}
+\subsection{Representación}
+Notación:
+\begin{itemize}
+	\item $i$ un indice para los nodos en la red.
+	\item $v_i$ nodo $i$ de la red.
+ 	\item $(i,j)$ el arco desde i a j
+	\item $x_{ij}$ variable de decisión del modelo, $x_{ij} = 1 $ cuando el arco de los nodos $(v_i,v_j)$ es incluido en el camino, en caso contrario $x_{ij} = 0$.
+	\item $l_{ij}$ el largo del arco desde i a j.                                
+	\item $s^{o}_{ij}$  velocidad entre los arcos $(v_i, v_j)$ en condiciones normales.
+	\item $s_{ij}(t)$ velocidad entre los arcos $(v_i, v_j)$ en el tiempo $t$.        
+	\item $\alpha_{ij}$ parametro decreciente para manipular la velocidad.              
+	\item $\beta_{ij}$ parametro decreciente para manipular la velocidad.             
+	\item $t_{ij}$ tiempo necesario para viajar entre i y j.                      
+\end{itemize}
+
+La formulación del \textit{route selection for emergency logistics management} se describe de la siguiente manera:
+
+El objetivo del modelo es minimizar el tiempo empleado en el camino. Las ecuaciones \eqref{7}, \eqref{8} y \eqref{9} son parte de la fórmula de recursión del tiempo total para el camino. En la ecuación \eqref{speed} la función decreciente de la velocidad de viaje en el arco $(v_i,v_j)$. La restricción \eqref{full} asegura un camino factible desde $v_1$ hasta $v_n$,la restricción \eqref{circles} asegura que no existan ciclos y \eqref{full} muestra los dominios de las variables.
+
+\begin{equation}
+	 \text{mín} \sum_{i=1}^{n}\sum_{j=1}^{n} t_{ij} \cdot x_{ij}
+\end{equation}
+
+\begin{equation}\label{7}
+  \int_{t_i}^{t_j} s_{ij}(t)dt = l_{ij}
+\end{equation}
+\begin{equation}\label{8}
+  t_{ij} = t_j - t_i
+\end{equation}
+\begin{equation}\label{9}
+t_1 =0
+\end{equation}
+\begin{equation}\label{speed}
+  s_{ij}(t) = s_{ij}^0 \cdot \alpha_{ij} \cdot e^{-\beta_{ij}\cdot t}
+\end{equation}
+
+\begin{equation}\label{full}
+	\sum_{\substack{j=1\\
+                  j \neq i}}^n x_{ij} - \sum_{\substack{j=1\\
+                  j \neq i}}^{n} x_{ji} = \begin{cases}
+1 & i=1\\
+-1 & i=n \\
+0 & eoc
+\end{cases}
+\end{equation}
+
+
+
+\begin{equation}\label{circles}
+	\sum_{\substack{j=1\\
+                  j \neq i}}^n x_{ij} = \begin{cases}
+\leq 1 & i\neq n\\
+=0 & i=n 
+\end{cases}
+\end{equation}
+
+\begin{equation}
+	x_{ij} = 0,1;i=1,2,\cdots,n;j=1,2,\cdots,n
+\end{equation}
+%todo: preguntar operadores/movimientos
+\subsection{Operadores/Movimientos}
+La decisión para la selección del siguiente nodo se realiza en base al movimiento  definido por:
+\begin{equation}
+j = \begin{cases} arg max_{u \in S_{k}(i)} \{ [\tau(i,u)]^\alpha [\eta(i,u)]^\beta\} &\mbox{if } q \leq q_0 \\ 
+J & otherwise \end{cases} 
+\end{equation}
+
+Donde $J \in J_i^k$ se elige según la probabilidad:
+
+	\begin{equation}
+		P_{ij}^k(t) = \frac{[\tau_{ij}(t)]^{\alpha_a}[\eta_{ij}]^{\beta_a}}{\sum_{h \in J_i^k } [\tau_{ij}(t)]^{\alpha_a}[\eta_{ij}]^{\beta_a}}
+	\end{equation}
+	
+Para la sección de siguiente nodo se considera la heurística del tiempo expresada por $\eta = \frac{1}{tiempo\_tour}$.
+En caso que el nodo sea un nodo seguro se selecciona el nodo y se finaliza la construcción del camino.
+%todo: descripcion de cada proceso
+\subsection{Descripción de cada proceso}
+\subsection{Pseudocódigo general}
+En general, el algoritmo implementado está basado en el algoritmo Ant Colony System \cite{dorigo1997ant}. A continuación se muestra un pseudocógido del algoritmo \ref{alg}.\\
+\begin{algorithm}[]
+\label{alg}
+
+ \KwData{Procedure ACS-TSP}
+ inicializar\;
+ \For{cada arco (i,j)}{
+ 	$\tau_{ij}(0) = \tau_{0}$
+ }
+ \For{k=1 hasta n}{
+ 	Ubique la hormiga $k$ en el primer nodo
+ }
+ Sea $T+$ el tour más corto encontrado desde el inicio\;
+ \For{t=1 hasta el número de iteraciones}{
+ \For{k=1 hasta m}{
+ \While{no se complete el tour}{
+  \eIf{si existe un nodo j $\in$ cl }{
+   Elegir un nodo $j$, $j \in j_{i}^{k}$ entre $cl$ nodos de la lista\;
+\begin{equation*}
+j = \begin{cases} arg max_{u \in J_{i}^{k}} \{ [\tau_{iu}(t))]^\alpha [\eta_{iu}]^\beta\} &\mbox{if } q \leq q_0 \\ 
+J & otherwise \end{cases}
+\end{equation*}
+	Donde $J \in J_i^k$ se elige según la probabilidad\;
+	\begin{equation}
+		P_{ij}^k(t) = \frac{[\tau_{ij}(t)]^{\alpha}[\eta_{ij}]^{\beta}}{\sum_{h \in J_i^k } [\tau_{ih}(t)]^{\alpha}[\eta_{ih}]^{\beta}}
+	\end{equation}
+Y donde $i$ es el nodo actual.
+%else
+   }
+   {
+   elegir el nodo $j \in J_{i}^{k}$ más cercana.
+  }
+ Luego se actualiza la feromona\;
+\begin{equation}
+	t_{ij}(t) = (1-\rho)t_{ij}(t) + \rho \tau_0
+\end{equation}
+ }
+ %while tour
+ Calcular el tiempo $T_k$ del tour de la hormiga $k$
+ }
+ Salvar la mejor solución $T^{+}$ encontrada hasta el momento
+ %for hormigas
+ 
+ \For{cada arco (i,j) $\in T^{+}$ }{
+\begin{equation}
+	t_{ij}(t) = (1-\rho)t_{ij}(t) + \rho \Delta \tau_{ij}(t)	
+\end{equation}
+	donde $\tau_{ij}(t) = \frac{1}{T^{+}}$
+ }
+ }
+ %for iteraciones
+ \caption{Algoritmo ACS.}
+\end{algorithm}
+\subsection{Listado de parámetros del algoritmo}
+
+A continuación se presenta los parámetros utilizados por el algoritmo.
+\begin{itemize}
+\item Número de iteraciones: $loops=2000$
+\item Tamaño de la lista candidata $cl=15$
+\item Número de hormigas $M=10$
+\item Parámetro ACS $\alpha_{ant}=1$
+\item Parámetro ACS $\beta_{ant}=2$
+\item Selección $q_0=0.5$
+\item Evaporación $\rho=0.5$
+\item Feromona inicial $\tau_{0}=0.1$
+\end{itemize}
