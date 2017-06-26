@@ -18,6 +18,8 @@
 \usepackage{mathtools}
 \usepackage[]{algorithm2e}
 \usepackage{float}
+\usepackage{ltxtable} 
+
 %
 \begin{document}
 %
@@ -32,7 +34,7 @@
 %                                     also used for the TOC unless
 %                                     \toctitle is used
 %
-\author{Maximiliano Osorio\inst{1}}
+\author{Maximiliano Osorio}
 %
 \authorrunning{Osorio et al.} % abbreviated author list (for running head)
 %
@@ -48,8 +50,8 @@
 
 \begin{abstract}
 \textit{Route selection for emergency logistics management} es uno de los problemas fundamentales en la gestión de logística en caso de emergencia. En la literatura el problema ha sido tratado considerando la velocidad de viaje entre los nodos constante, pero, la velocidad de viaje es variable con la extensión del desastre, especialmente en huracanes o inundaciones.
-En este documento presenta un modelo matemáticos para la selección de rutas para emergencia: un modelo de un objetivo que considera el efecto del desastre en tiempo de viaje entre cada arco,  minimizando el tiempo total de viaje a lo largo del camino. Para la resolución del problema se propone un algoritmo basado en  \textit{Ant Colony System}.
-\keywords{Route guidance system, Disaster simulation}
+En este documento presenta un modelo matemáticos para la selección de rutas para emergencia: un modelo de un objetivo que considera el efecto del desastre en tiempo de viaje entre cada arco,  minimizando el tiempo total de viaje a lo largo del camino. Para la resolución del problema se propone un algoritmo basado en  \textit{Ant Colony System}. 
+\keywords{Route guidance system, Disaster simulation, Ant colony optimization}
 
 
 \end{abstract}
@@ -59,11 +61,6 @@ En este documento presenta un modelo matemáticos para la selección de rutas pa
 \input{estado.tex}
 \input{descripcion.tex}
 
-\section{Resultados preliminares}
-\subsection{Objetivos experimentos}
-
-En esta sección preliminar, se busca realizar una comparación de la calidad de las soluciones encontradas utilizando las instancias del trabajo  \cite{Yuan20091081}. 
-
 
 \input{instancias1.tex}
 \input{resultados.tex}
@@ -71,7 +68,7 @@ En esta sección preliminar, se busca realizar una comparación de la calidad de
 
 \textit{Route selection for emergency logistics management} es uno de los problemas fundamentales de logística en caso de emergencia, lo cual se puede observar en los múltiples trabajos y las diversas técnicas utilizadas para la resolución del problema en la literatura. De acuerdo al modelo propuesto en este trabajo, \cite{Yuan20091081,zhang2013route} presentan el mismo modelo y utilizan una instancia con 20 nodos donde cambia el nivel de desastre generando 5 tipos de riesgos, ambos algoritmos presentados en \cite{Yuan20091081,zhang2013route} obtienen los mejores resultados posibles, no obstante se debe considerar que el tamaño de la instancia es pequeña, la cantidad de instancias son pocas y la diversidad es baja. Por otro lado, en  \cite{zong2010multi,zong2010multiflow,zong2014conflict} se utiliza una instancia basada en el estadio \textit{Wuhan Sports Center} siendo modelado por un red compuesta de  479 nodos en total, donde se observa que existe una alta complejidad, posicionándola como una instancia deseable para ser utilizada en \textit{route selection for emergency logistics management}, aunque se debe considerar que es necesario adaptaciones al modelo o la instancia para que sean compatibles.
 
-Para partir de los resultados,  \textit{Ant Colony System} es una técnica muy adecuada para este tipo de problema, ya que el problema de \textit{Route selection for emergency logistics management} tiene similitudes a  \textit{Traveling Salesman Problem} y al ser un problema de rutas, la adaptación del algoritmo es simple. 
+A partir de los resultados, observamos que \textit{Ant Colony System} es una técnica muy adecuada para este tipo de problema, ya que el problema de \textit{Route selection for emergency logistics management} tiene similitudes a  \textit{Traveling Salesman Problem} y al ser un problema de rutas, la adaptación del algoritmo es simple. 
 
 Pese a que los resultados muestran eficiencia y factibilidad del modelo y algoritmo. Se debe considerar que la instancia de prueba es pequeña por lo tanto no es posible asegurar la calidad del algoritmo para otros casos.
 %¿hablar algo sobre las tecnicas de la literatura?
@@ -85,6 +82,7 @@ Pese a que los resultados muestran eficiencia y factibilidad del modelo y algori
 \bibliography{Referencias}
 \endgroup
 
+\input{appendix.tex}
 
 
 \end{document}

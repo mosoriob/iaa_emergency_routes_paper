@@ -2,16 +2,16 @@
 \subsection{Representación}
 Notación:
 \begin{itemize}
-	\item $i$ un indice para los nodos en la red.
-	\item $v_i$ nodo $i$ de la red.
- 	\item $(i,j)$ el arco desde i a j
-	\item $x_{ij}$ variable de decisión del modelo, $x_{ij} = 1 $ cuando el arco de los nodos $(v_i,v_j)$ es incluido en el camino, en caso contrario $x_{ij} = 0$.
-	\item $l_{ij}$ el largo del arco desde i a j.                                
-	\item $s^{o}_{ij}$  velocidad entre los arcos $(v_i, v_j)$ en condiciones normales.
-	\item $s_{ij}(t)$ velocidad entre los arcos $(v_i, v_j)$ en el tiempo $t$.        
-	\item $\alpha_{ij}$ parametro decreciente para manipular la velocidad.              
-	\item $\beta_{ij}$ parametro decreciente para manipular la velocidad.             
-	\item $t_{ij}$ tiempo necesario para viajar entre i y j.                      
+	\item $i$ indice para los nodos en la red
+	\item $v_i$ nodo $i$ de la red
+ 	\item $(i,j)$ arco desde i a j
+	\item $x_{ij}$ variable de decisión del modelo, $x_{ij} = 1 $ cuando el arco de los nodos $(v_i,v_j)$ es incluido en el camino, en caso contrario $x_{ij} = 0$
+	\item $l_{ij}$ largo del arco desde i a j
+	\item $s^{o}_{ij}$  velocidad entre los arcos $(v_i, v_j)$ en condiciones normales
+	\item $s_{ij}(t)$ velocidad entre los arcos $(v_i, v_j)$ en el tiempo $t$
+	\item $\alpha_{ij}$ parámetro decreciente para manipular la velocidad           
+	\item $\beta_{ij}$ parámetro decreciente para manipular la velocidad             
+	\item $t_{ij}$ tiempo necesario para viajar entre i y j                      
 \end{itemize}
 
 La formulación del \textit{route selection for emergency logistics management} se describe de la siguiente manera:
@@ -58,7 +58,6 @@ t_1 =0
 \begin{equation}
 	x_{ij} = 0,1;i=1,2,\cdots,n;j=1,2,\cdots,n
 \end{equation}
-%todo: preguntar operadores/movimientos
 \subsection{Operadores/Movimientos}
 La decisión para la selección del siguiente nodo se realiza en base al movimiento  definido por:
 \begin{equation}
@@ -77,11 +76,11 @@ En caso que el nodo sea un nodo seguro se selecciona el nodo y se finaliza la co
 %todo: descripcion de cada proceso
 \subsection{Descripción de cada proceso}
 \subsection{Pseudocódigo general}
-En general, el algoritmo implementado está basado en el algoritmo Ant Colony System \cite{dorigo1997ant}. A continuación se muestra un pseudocógido del algoritmo \ref{alg}.\\
+En general, el algoritmo implementado está basado en el algoritmo Ant Colony System \cite{dorigo1997ant}. En \ref{alg} se muestra un pseudocógido del algoritmo \\
 \begin{algorithm}[]
 \label{alg}
 
- \KwData{Procedure ACS-TSP}
+ \KwData{Algoritmo propuesto}
  inicializar\;
  \For{cada arco (i,j)}{
  	$\tau_{ij}(0) = \tau_{0}$
@@ -136,10 +135,10 @@ A continuación se presenta los parámetros utilizados por el algoritmo.
 \begin{itemize}
 \item Número de iteraciones: $loops=2000$
 \item Tamaño de la lista candidata $cl=15$
-\item Número de hormigas $M=10$
-\item Parámetro ACS $\alpha_{ant}=1$
-\item Parámetro ACS $\beta_{ant}=2$
-\item Selección $q_0=0.5$
-\item Evaporación $\rho=0.5$
+\item Número de hormigas $M=[6,88]$
+\item Parámetro ACS $\alpha_{ant}=[1.29, 4.23]$
+\item Parámetro ACS $\beta_{ant}=[2.5,9.83]$
+\item Selección $q_0=[0.08,0.94]$
+\item Evaporación $\rho=[0.11,0.97]$
 \item Feromona inicial $\tau_{0}=0.1$
 \end{itemize}
